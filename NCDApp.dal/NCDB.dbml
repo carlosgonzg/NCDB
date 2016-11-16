@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="NCDB" Class="NCDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=GONZALEZ-PC;Initial Catalog=NCDB;Integrated Security=True;Pooling=False" SettingsObjectName="NCDApp.dal.Properties.Settings" SettingsPropertyName="NCDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" AutoSync="Never" Type="System.Int64" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" CanBeNull="false" />
+      <Column Name="Birthday" Type="System.DateTime" CanBeNull="false" />
+      <Column Name="StateId" Type="System.Int64" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" CanBeNull="false" />
+      <Column Member="CreatedDate" Type="System.DateTime" IsReadOnly="true" CanBeNull="false" UpdateCheck="Always" />
+    </Type>
+  </Table>
+  <Table Name="" Member="Countries">
+    <Type Name="Country">
+      <Column Name="Id" AutoSync="Never" Type="System.Int64" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" CanBeNull="false" />
+      <Column Member="CreatedDate" Type="System.DateTime" IsReadOnly="true" CanBeNull="false" UpdateCheck="Always" />
+      <Association Name="Country_State" Member="States" ThisKey="Id" OtherKey="CountryId" Type="State" />
+    </Type>
+  </Table>
+  <Table Name="" Member="States">
+    <Type Name="State">
+      <Column Name="Id" AutoSync="Never" Type="System.Int64" IsReadOnly="true" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" CanBeNull="false" />
+      <Column Name="CountryId" Type="System.Int64" CanBeNull="false" />
+      <Column Member="CreatedDate" Type="System.DateTime" CanBeNull="false" />
+      <Association Name="Country_State" Member="Country" ThisKey="CountryId" OtherKey="Id" Type="Country" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
